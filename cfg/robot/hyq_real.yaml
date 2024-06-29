@@ -1,0 +1,14 @@
+# HyQReal configuration file _________________________________________________________________
+robot:
+
+  name: "hyqreal"  # Name to load the robot_descriptions.py xml file from mujoco menajerie
+
+  # Parameters used by potato/rigid-body modeling and control _______________________________________________
+  # Inertia matrix of the robot's base.
+  inertia: [[4.55031444, 0.00275249434, -0.511957307],
+            [0.00275249434, 20.2411774, -0.000738560592],
+            [-0.511957307, -0.000738560592, 21.4269772]]
+  # Nominal quadruped hip height.
+  hip_height: 0.5
+
+  mass: 108.40  # Total mass of the robot. TODO: Make automatic calculation from the URDF

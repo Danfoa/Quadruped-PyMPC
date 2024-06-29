@@ -3,7 +3,7 @@ import collections
 import mujoco
 import numpy as np
 
-from utils.quadruped_utils import LegsAttr
+from gym_quadruped.utils.quadruped_utils import LegsAttr
 
 
 # Class for the generation of the reference footholds

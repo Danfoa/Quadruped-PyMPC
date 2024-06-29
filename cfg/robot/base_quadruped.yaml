@@ -1,0 +1,21 @@
+# Base robot configuration file _________________________________________________________________
+# This file can contain robot parameters shared by all quadruped robots.
+robot:
+  # TODO: Name to load the robot_descriptions.py xml file from mujoco menajerie
+  name: ""                              # default value, should be overridden
+
+  # Parameters used by potato/rigid-body modeling and control _______________________________________________
+  # Inertia matrix of the robot's base. TODO: Cant be extracted from the URDF?
+  inertia: [ ]                          # default value, should be overridden
+  # Nominal quadruped hip height.
+  hip_height: ??                        # default value, should be overridden
+  # Name of the Mujoco geometry (GEOM) element associated to the feet contact frame.
+  # The frame of this geometry will be used as contact points for Jacobian computation and contact detection.
+  feet_geom_name:                       # default value, should be overridden
+    FL: "FL"
+    FR: "FR"
+    HL: "HL"
+    HR: "HR"
+
+  mass: 24.63  # Total mass of the robot. TODO: Make automatic calculation from the URDF
+

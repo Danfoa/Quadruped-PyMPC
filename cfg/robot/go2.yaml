@@ -1,0 +1,14 @@
+# GO2 configuration file _________________________________________________________________
+robot:
+
+  name: "go2"  # Name to load the robot_descriptions.py xml file from mujoco menajerie
+
+  # Parameters used by potato/rigid-body modeling and control _______________________________________________
+  # Inertia matrix of the robot's base.
+  inertia: [[0.158460467, 0.00012166, -0.0155444692],
+            [0.00012166, 0.468645637, -0.0000312],
+            [-0.0155444692, -0.0000312, 0.524474661]]
+  # Nominal quadruped hip height.
+  hip_height: 0.28
+
+  mass: 15.019  # Total mass of the robot. TODO: Make automatic calculation from the URDF

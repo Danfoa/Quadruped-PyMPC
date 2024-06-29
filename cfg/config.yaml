@@ -1,0 +1,87 @@
+# This file includes all of the configuration parameters for the MPC controllers
+# and of the internal simulations that can be launched from the folder /simulation.
+
+# These are used both for a real experiment and a simulation -------------------------------------
+
+# This name refers to robot configurations in the directory cfg/robot/<robot_name>.yaml
+robot: 'mini_cheetah'  # 'go2', 'aliengo', 'hyqreal', 'mini_cheetah'
+
+mpc_params:
+  # GRF limits for each single leg
+  grf_max: null
+  grf_min: 0
+  mu: 0.5
+
+  # horizon is the number of timesteps in the future that the mpc will optimize
+  # dt is the discretization time used in the mpc
+  dt: 0.02
+  horizon: 12
+
+  # ----- START properties only for the gradient-based mpc -----
+  alpha_integrator: 0.1
+  as_rti_iter: 1
+  as_rti_type: "AS-RTI-A"  # "AS-RTI-A", "AS-RTI-B", "AS-RTI-C", "AS-RTI-D", "Standard"
+  crawl_stability_margin: 0.04  # in general, 0.02 is a good value
+  external_wrenches_compensation: True
+  external_wrenches_compensation_num_step: 15
+  integrator_cap: [0.5, 0.2, 0.2, 0.0, 0.0, 1.0]
+  num_qp_iterations: 1
+  pace_stability_margin: 0.1
+  passive_arm_compensation: True
+  solver_mode: 'balance'  # balance, robust, speed, crazy_speed
+  trot_stability_margin: 0.04
+  type: 'nominal'  # 'nominal' optimized directly the GRF, 'input_rates' optimizes the delta GRF
+  use_DDP: False
+  use_RTI: False
+  use_foothold_constraints: False
+  use_foothold_optimization: True
+  use_integrators: False
+  use_input_prediction: False
+  use_nonuniform_discretization: False
+  use_static_stability: False
+  use_warm_start: False
+  use_zmp_stability: False
+  horizon_fine_grained: 2
+  dt_fine_grained: 0.01
+
+  # ----- END properties for the gradient-based mpc -----
+
+  # ----- START properties only for the sampling-based mpc -----
+  control_parametrization: 'cubic_spline'  # 'cubic_spline', 'linear_spline_1', 'linear_spline_2', 'zero_order'
+  num_parallel_computations: 10000  # More is better, but slower computation!
+  num_sampling_iterations: 1  # More is better, but slower computation!
+  sampling_method: 'random_sampling'  # 'random_sampling', 'mppi', 'cem_mppi'
+  shift_solution: False
+  sigma_cem_mppi: 3
+  sigma_mppi: 3
+  sigma_random_sampling: [0.2, 3, 10]
+
+  # ----- END properties for the sampling-based mpc -----
+
+  # if this is true, we optimize the step frequency as well
+  # for the sampling controller, this is done in the rollout
+  # for the gradient-based controller, this is done with a batched version of the ocp
+  optimize_step_freq: False
+  step_freq_available: [1.3, 2.0, 2.4]
+
+simulation_params:
+  dt: 0.002  # this is the integration time used in the simulator
+  external_disturbances_bound: [18, 18, 0, 18, 18, 18]  # fx, fy, fz, mx, my, mz
+  gait: 'trot'  # 'trot', 'pace', 'crawl', 'bound', 'full_stance'
+  mpc_frequency: 200  # the MPC will be called every 1/(mpc_frequency*dt) timesteps
+  ref_pitch: 0.0
+  ref_roll: 0.0
+  ref_x_dot: 0.3
+  ref_y_dot: 0.0
+  ref_yaw_dot: 0.0
+  scene: 'perlin'  # flat, rough, stairs, suspend_stairs, slope, perlin, image
+  step_height: 0.05  # 0.05 go2
+  swing_generator: 'scipy'  # 'scipy', 'explicit', 'ndcurves'
+  swing_integral_gain_fb: 0
+  swing_position_gain_fb: 5000
+  swing_velocity_gain_fb: 100
+  use_external_disturbances: True
+  use_inertia_recomputation: False
+  use_kind_of_real_time: True
+  use_print_debug: False
+  use_visualization_debug: True

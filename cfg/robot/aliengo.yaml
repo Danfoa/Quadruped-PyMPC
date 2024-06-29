@@ -1,0 +1,13 @@
+# AlienGo configuration file _________________________________________________________________
+robot:
+  name: "aliengo"  # Name to load the robot_descriptions.py xml file from mujoco menajerie
+
+  # Parameters used by potato/rigid-body modeling and control _______________________________________________
+  # Inertia matrix of the robot's base.
+  inertia: [[0.2310941359705289, -0.0014987128245817424, -0.021400468992761768],
+            [-0.0014987128245817424, 1.4485084687476608, 0.0004641447134275615],
+            [-0.021400468992761768, 0.0004641447134275615, 1.503217877350808]]
+  # Nominal quadruped hip height.
+  hip_height: 0.35
+
+  mass: 24.63  # Total mass of the robot. TODO: Make automatic calculation from the URDF
